@@ -95,12 +95,48 @@ export default {
         // 发送验证码
         handleSendCaptcha(){
 
+            //判断如果手机号码是空,不请求
+            if(!this.form.username){
+                this.$message.error("请输入手机号码");
+                return;
+            }
+           this.$axios({
+               url:"/captchas",
+               method:"POST",
+               data:{
+                   tel:this.form.username //手机号码
+               }
+           }).then(res =>{
+               //结构出code属性
+               const {code} = res.data;
+            //    this.$message({
+            //        type:"success",
+            //        message:`模拟手机验证码是:${code}`
+            //    })
+            
+            //也可以使用这个弹框
+            this.$alert(`模拟手机验证码是:${code}`,"提示");
+           })
         },
 
 
         // 注册
         handleRegSubmit(){
-           console.log(this.form)
+           this.$refs.form.validate(valid=>{
+               if(valid){
+                   //可以使用...加上变量名会指向剩余的属性
+                   const {checkPassword, ...rest}=this.form
+                 this.$axios({
+                     url:"/accounts/register",
+                     method:"POST",
+                     data:rest
+                 }).then(res=>{
+                     //注册成功后帮用户自动登录
+                     //commit接受两个参数,第一个mutations参数是方法名,第二个参数数据
+                   this.$store.commit("user/setUserInfo",res.data)
+                 })
+               }
+           });
         }
     }
 }
