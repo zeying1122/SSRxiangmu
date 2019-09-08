@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       //记录当前高亮的索引
-      current: 1
+      current: 0
     }
   },
   //注册组件
