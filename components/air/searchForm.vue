@@ -75,7 +75,7 @@ export default {
               departDate:""
             },
             departDate:[], //存储后台返回的出发城市数组
-            destData:[], //存储后台返回的到达城市数组
+            destDate :[], //存储后台返回的到达城市数组
         }
     },
     methods: {
@@ -92,7 +92,7 @@ export default {
                 this.form.departCode=this.departDate[0] ? this.departDate[0].sort : "";
              },
 
-             //出发城市输入框失去焦点时候触发
+             //到达城市输入框失去焦点时候触发
              handlDestBlur(){
                this.form.destCity= this.destDate[0] ? this.destDate[0].value : "";
               this.form.destCode=this.destDate[0] ? this.destDate[0].sort:"";
