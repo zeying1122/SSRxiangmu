@@ -241,6 +241,15 @@ export default {
             this.$alert("出发日期不能为空","提示");
             return;
           }
+
+          //把本地存储先拿出来
+           const arr = JSON.parse(localStorage.getItem("airs")) || [];
+           
+           arr.push(this.form);
+
+           //把搜索的条件保存到本地
+           localStorage.setItem("airs" , JSON.stringify(arr));
+
             // console.log(this.form)
             //跳转到机票列表页  /air/flights
             this.$router.push({

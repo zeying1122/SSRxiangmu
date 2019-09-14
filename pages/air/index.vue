@@ -50,7 +50,7 @@
           >
           <!-- 封面图片 -->
             <img :src="item.cover" />
-            <!-- 航班信息 -->
+            <!-- 航班信息 --> 
             <el-row class="layer-bar" type="flex" justify="space-between">
               <span>{{item.departCity}}-{{item.destCity}}</span>
               <span>{{item.price}}</span>

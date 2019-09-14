@@ -44,9 +44,11 @@
                             ￥{{item.org_settle_price}}
                         </el-col>
                         <el-col :span="3" class="choose-button">
+                            <!-- 座位id -->
                             <el-button 
                             type="warning" 
-                            size="mini">
+                            size="mini"
+                            @click="handleChoose(item.seat_xid)">
                             选定
                             </el-button>
                             <p>剩余：{{item.discount}}</p>
@@ -108,6 +110,18 @@ export default {
             return `${hours}时${min}分`
          }
     },
+    methods:{
+        //跳转到机票订单页
+        handleChoose(seat_xid){
+            this.$router.push({
+                path:"/air/order",
+                query:{
+                    id:this.data.id,
+                    seat_xid
+                }
+            })
+        }
+    }
 }
 </script>
 
